@@ -29,8 +29,11 @@ export class AppComponent {
   }
 
   onDelete(id:number){
-    if(this.currentSignUpDetails)
-    this.signupService.deleteSignup(id)
+    if(this.currentSignUpDetails){
+      this.signupService.deleteSignup(id)
+      this.signUpDetailsList = this.signupService.getSignupDetails()
+    }
+
   }
 
   onEdit(signupDetail: SignUpDetail){

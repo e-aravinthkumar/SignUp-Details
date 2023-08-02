@@ -6,18 +6,19 @@ import { SignUpDetail } from './interface';
 })
 export class SignUpServiceService {
   signupDetails: SignUpDetail[] = []
-  currentIndex: number = 0
+  signupIdCounter: number = 1;
   constructor() { }
 
-  addSignupDetail(value: object){
-    const signupDetail = value
-    this.signupDetails.push({...signupDetail, id:this.currentIndex++} as SignUpDetail)
+  addSignupDetail(value: object) {
+    const signupDetail = value as SignUpDetail;
+    signupDetail.id = this.signupIdCounter++;
+    this.signupDetails.push(signupDetail);
   }
 
   getSignupDetails(){
     return this.signupDetails
   }
-  
+
   updateSignupDetail(id:number, Value: object){
     const updatedValue = Value as SignUpDetail
     const index =  this.signupDetails.findIndex((signupDetail: SignUpDetail)=> signupDetail.id === id)
